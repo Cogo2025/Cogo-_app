@@ -76,11 +76,13 @@ class OtpVerificationPage extends StatelessWidget {
                     width: double.infinity,
                     child: ElevatedButton(
                       onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => AccountSelectionPage()),
-                        );
+                       Navigator.push(
+  context,
+  MaterialPageRoute(
+    builder: (context) => AccountSelectionPage(phoneNumber: phoneNumber),
+  ),
+);
+
                       },
                       style: ElevatedButton.styleFrom(
                         padding: const EdgeInsets.symmetric(vertical: 16),

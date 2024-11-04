@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 
-class DriverDashboardPage extends StatefulWidget {
+class OwnerDashboardPage extends StatefulWidget {
   final String username;
 
-  const DriverDashboardPage({Key? key, required this.username}) : super(key: key);
+  const OwnerDashboardPage({Key? key, required this.username}) : super(key: key);
 
   @override
-  _DriverDashboardPageState createState() => _DriverDashboardPageState();
+  _OwnerDashboardPageState createState() => _OwnerDashboardPageState();
 }
 
-class _DriverDashboardPageState extends State<DriverDashboardPage> {
+class _OwnerDashboardPageState extends State<OwnerDashboardPage> {
   bool viewMore = false;
   bool _showSearchBar = false;
   List<String> items = List.generate(8, (index) => 'Item ${index + 1}');
@@ -95,11 +95,11 @@ class _DriverDashboardPageState extends State<DriverDashboardPage> {
               height: 200,
               child: PageView(
                 children: [
-                  _buildImagePlaceholder('Car 1'),
-                  _buildImagePlaceholder('Car 2'),
-                  _buildImagePlaceholder('Car 3'),
-                  _buildImagePlaceholder('Car 4'),
-                  _buildImagePlaceholder('Car 5'),
+                  _buildImagePlaceholder('Asset 1'),
+                  _buildImagePlaceholder('Asset 2'),
+                  _buildImagePlaceholder('Asset 3'),
+                  _buildImagePlaceholder('Asset 4'),
+                  _buildImagePlaceholder('Asset 5'),
                 ],
               ),
             ),
@@ -188,7 +188,7 @@ class _DriverDashboardPageState extends State<DriverDashboardPage> {
                 color: Color.fromARGB(255, 175, 129, 255),
               ),
               child: Text(
-                'Driver Menu',
+                'Owner Menu',
                 style: TextStyle(
                   color: Colors.white,
                   fontSize: 24,

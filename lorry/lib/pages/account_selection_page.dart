@@ -1,8 +1,25 @@
 import 'package:flutter/material.dart';
-import 'driver_details_page.dart';
-import 'owner_details_page.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'driver_dashboard_page.dart'; // Ensure these are correctly implemented
+import 'owner_dashboard_page.dart';
 
 class AccountSelectionPage extends StatelessWidget {
+  final String phoneNumber;
+
+  const AccountSelectionPage({Key? key, required this.phoneNumber}) : super(key: key);
+
+  Future<void> _saveAccountType(String type) async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setString('accountType', type); // Save type to preferences
+  }
+
+  void _navigateToDashboard(BuildContext context, Widget page) {
+    Navigator.pushReplacement(
+      context,
+      MaterialPageRoute(builder: (context) => page),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -12,8 +29,8 @@ class AccountSelectionPage extends StatelessWidget {
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
             colors: [
-              Color.fromARGB(255, 114, 71, 255), // Light purple
-              Color.fromARGB(255, 120, 122, 255), // Blue-purple
+              Color.fromARGB(255, 114, 71, 255),
+              Color.fromARGB(255, 120, 122, 255),
             ],
           ),
         ),
@@ -35,7 +52,6 @@ class AccountSelectionPage extends StatelessWidget {
               ),
               child: Column(
                 mainAxisSize: MainAxisSize.min,
-                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   const Text(
                     'Create your account as',
@@ -46,66 +62,20 @@ class AccountSelectionPage extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(height: 24),
-
-                  // Row for Driver and Owner buttons
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      // Driver Button with Icon
-                      Expanded(
-                        child: ElevatedButton.icon(
-                          onPressed: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => DriverDetailsPage()),
-                            );
-                          },
-                          style: ElevatedButton.styleFrom(
-                            padding: const EdgeInsets.symmetric(
-                              vertical: 24, // Increase button height
-                              horizontal: 16,
-                            ),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(8),
-                            ),
-                          ),
-                          icon: const Icon(Icons.drive_eta, size: 28), // Driver icon
-                          label: const Text(
-                            'Driver',
-                            style: TextStyle(fontSize: 18),
-                          ),
-                        ),
-                      ),
-                      const SizedBox(width: 16), // Add spacing between buttons
-
-                      // Owner Button with Icon
-                      Expanded(
-                        child: ElevatedButton.icon(
-                          onPressed: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => OwnerDetailsPage()),
-                            );
-                          },
-                          style: ElevatedButton.styleFrom(
-                            padding: const EdgeInsets.symmetric(
-                              vertical: 24, // Increase button height
-                              horizontal: 16,
-                            ),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(8),
-                            ),
-                          ),
-                          icon: const Icon(Icons.account_balance, size: 28), // Updated Owner icon
-                          label: const Text(
-                            'Owner',
-                            style: TextStyle(fontSize: 18),
-                          ),
-                        ),
-                      ),
-                    ],
+                  ElevatedButton(
+                    onPressed: () async {
+                      await _saveAccountType('driver');
+                      _navigateToDashboard(context, DriverDashboardPage());
+                    },
+                    child: const Text('Driver'),
+                  ),
+                  const SizedBox(height: 16),
+                  ElevatedButton(
+                    onPressed: () async {
+                      await _saveAccountType('owner');
+                      _navigateToDashboard(context, OwnerDashboardPage());
+                    },
+                    child: const Text('Owner'),
                   ),
                 ],
               ),
@@ -116,3 +86,4 @@ class AccountSelectionPage extends StatelessWidget {
     );
   }
 }
+

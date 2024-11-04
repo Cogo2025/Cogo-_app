@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'otp_verification_page.dart';
+import 'account_selection_page.dart'; // Import the account selection page
 
 class LoginPage extends StatefulWidget {
   @override
@@ -107,8 +108,34 @@ class _LoginPageState extends State<LoginPage> {
                             )
                           : const Text(
                               'Verify OTP',
-                              style: TextStyle(fontSize: 18, color: Colors.white),
+                              style:
+                                  TextStyle(fontSize: 18, color: Colors.white),
                             ),
+                    ),
+                  ),
+                  const SizedBox(height: 24),
+
+                  // "Don't have an account?" section
+                  Center(
+                    child: GestureDetector(
+                      onTap: () {
+                        // Navigate to the AccountSelectionPage when tapped
+                       Navigator.push(
+  context,
+  MaterialPageRoute(
+    builder: (context) => AccountSelectionPage(phoneNumber: phoneController.text),
+  ),
+);
+
+                      },
+                      child: const Text(
+                        "Don't have an account? Create your account",
+                        style: TextStyle(
+                          color: Colors.blueAccent,
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
                     ),
                   ),
                 ],

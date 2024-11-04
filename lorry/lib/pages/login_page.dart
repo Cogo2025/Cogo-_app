@@ -21,8 +21,8 @@ class _LoginPageState extends State<LoginPage> {
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
             colors: [
-              Color.fromARGB(255, 114, 71, 255), // Light purple
-              Color.fromARGB(255, 120, 122, 255), // Blue-purple
+              Color(0xFF342290), 
+              Color(0xFF4B2BFF),
             ],
           ),
         ),
@@ -146,7 +146,6 @@ class _LoginPageState extends State<LoginPage> {
       ),
     );
   }
-
   void _submitPhoneNumber() {
     if (_formKey.currentState!.validate()) {
       setState(() {

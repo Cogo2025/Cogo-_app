@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'owner_dashboard_page.dart'; // Import your OwnerDashboardPage
 
 class OwnerDetailsPage extends StatelessWidget {
   final TextEditingController nameController = TextEditingController();
@@ -95,8 +96,12 @@ class OwnerDetailsPage extends StatelessWidget {
                           padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 32),
                         ),
                         onPressed: () {
-                          ScaffoldMessenger.of(context).showSnackBar(
-                            const SnackBar(content: Text('Thanks for your information!')),
+                          // Navigate to OwnerDashboardPage when Save is pressed
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => OwnerDashboardPage(ownerName: '',),
+                            ),
                           );
                         },
                         child: const Text('Save'),

@@ -12,21 +12,17 @@ class WelcomePage extends StatelessWidget {
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
             colors: [
-              Color.fromARGB(255, 114, 71, 255), 
-              Color.fromARGB(255, 120, 122, 255),
+              Color(0xFF342290),
+              Color(0xFF4B2BFF),
             ],
           ),
         ),
-        child: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Image.asset(
-                'assets/images/truck.png', // Use Image.asset for local images
-                height: 150,
-              ),
-              const SizedBox(height: 24),
-              const Text(
+        child: Column(
+          children: [
+            const SizedBox(height: 50), // Add space from the top of the screen
+            const Padding(
+              padding: EdgeInsets.symmetric(vertical: 20.0), // Add some padding around the text
+              child: Text(
                 'Welcome to Cogo',
                 style: TextStyle(
                   fontSize: 28,
@@ -34,30 +30,43 @@ class WelcomePage extends StatelessWidget {
                   color: Colors.white,
                 ),
               ),
-              const SizedBox(height: 24),
-              ElevatedButton(
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => LoginPage()),
-                  );
-                },
-                style: ElevatedButton.styleFrom(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 30,
-                    vertical: 12,
-                  ),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(8),
-                  ),
-                ),
-                child: const Text(
-                  'Get Started',
-                  style: TextStyle(fontSize: 18),
+            ),
+            Expanded(
+              child: Center(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Image.asset(
+                      'assets/images/truck.png', // Use Image.asset for local images
+                      height: 150,
+                    ),
+                    const SizedBox(height: 24),
+                    ElevatedButton(
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => LoginPage()),
+                        );
+                      },
+                      style: ElevatedButton.styleFrom(
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 30,
+                          vertical: 12,
+                        ),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(8),
+                        ),
+                      ),
+                      child: const Text(
+                        'Get Started',
+                        style: TextStyle(fontSize: 18),
+                      ),
+                    ),
+                  ],
                 ),
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );

@@ -14,8 +14,8 @@ class OtpVerificationPage extends StatelessWidget {
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
             colors: [
-              Color.fromARGB(255, 114, 71, 255), // Light purple
-              Color.fromARGB(255, 120, 122, 255), // Blue-purple
+              Color(0xFF342290), 
+              Color.fromARGB(231, 21, 76, 255),
             ],
           ),
         ),
